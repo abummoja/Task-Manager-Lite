@@ -8,7 +8,7 @@ The delayed launch and unresponsiveness is sometimes annoying as you may want to
 > I don't know why I had to write a user guide. :smile:
 
 Click an item (app) in the list, and use the preferred action in the buttons at the bottom. The buttons text content clearly states what it does when clicked. The task to be stopped is the task whose name is in the bottom left next to the buttons.
-![Screenshot of TMGRLite running on Windows 10]("main/tmgr-bg-processes.PNG")
+![Screenshot of TMGRLite running on Windows 10]("tmgr-bg-processes.PNG")
 ## Features
 - [x] Close apps and processes
 - [x] Force close unresponsive apps and processes
