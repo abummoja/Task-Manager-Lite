@@ -14,12 +14,19 @@ namespace Task_Manager_Lite
     public partial class Form1 : Form
     {
         int CURRENT = 1;
+        List<string> lb1 = new List<string>();
+        List<string> lb2 = new List<string>();
+        PerformanceCounter cpuMan;
         public Form1()
         {
+           // searchBoxNotifier.Text = "< Search Here.";
             InitializeComponent();
             ListProcesses();
             tabPage1.GotFocus += TabPage1_GotFocus;
             tabPage2.GotFocus += TabPage2_GotFocus;
+            searchBox.DropDown += SearchBox_DropDown;
+            searchBox.DropDownClosed += SearchBox_DropDownClosed;
+            //updatePerfMon();
             try
             {
                 getUsers();
@@ -28,6 +35,49 @@ namespace Task_Manager_Lite
             {
                 Console.WriteLine("Error");
             }
+           /* System.Threading.Thread ut = new System.Threading.Thread(ListProcesses);
+            ut.Start();
+            while (true)
+            {
+                System.Threading.Thread.Sleep(1000);
+            }*/
+        }
+
+     /*   private float CPUMonitor()
+        {
+            cpuMan = new PerformanceCounter("Processor", "% Processor Time", "_Total");
+            dynamic firstVal = cpuMan.NextValue();
+            //System.Threading.Thread.Sleep(1000);
+            dynamic secondVal = cpuMan.NextValue();
+            return secondVal;
+
+        }
+
+        void updatePerfMon()
+        {
+            try
+            {
+                int cpuPerc = (int)CPUMonitor();
+                cpuT.Text = cpuPerc + "%";
+            }
+            catch(Exception exc)
+            {
+                MessageBox.Show(exc.Message);
+            }
+        }*/
+
+        private void SearchBox_DropDownClosed(object sender, EventArgs e)
+        {
+            searchBoxNotifier.Text = "< Search Here.";
+            if(searchBox.Text != "")
+            {
+                label1.Text = searchBox.Text;
+            }
+        }
+
+        private void SearchBox_DropDown(object sender, EventArgs e)
+        {
+            searchBoxNotifier.Text = "Press Esc to close search.";
         }
 
         private void TabPage2_GotFocus(object sender, EventArgs e)
@@ -53,6 +103,15 @@ namespace Task_Manager_Lite
 
         private void ListProcesses()
         {
+            /*ImageList ImgList = new ImageList();
+            listView1.View = View.SmallIcon;
+            listView1.SmallImageList = ImgList;
+            ImgList.ImageSize = new Size(20, 20);
+            ImgList.TransparentColor = Color.Transparent;
+            Icon res;*/
+
+            lb1.Clear();
+            lb2.Clear();
             listBox1.Items.Clear();
             listBox2.Items.Clear();
             Process[] processes = Process.GetProcesses();
@@ -62,14 +121,18 @@ namespace Task_Manager_Lite
                 {
                     //Console.WriteLine(p.ProcessName);
                     listBox1.Items.Add(p.ProcessName);
+                    lb1.Add(p.ProcessName);
                     listBox1.Sorted = true;
                 }
                 else
                 {
                     listBox2.Items.Add(p.ProcessName);
+                    lb2.Add(p.ProcessName);
                     listBox2.Sorted = true;
                 }
-               
+                /*res = Icon.ExtractAssociatedIcon(p.MainModule.FileName);
+                ImgList.Images.Add(res);
+                listView1.Items.Add(p.ProcessName);*/
             }
         }
 
@@ -253,6 +316,29 @@ namespace Task_Manager_Lite
                 Console.WriteLine(usr.LastIndexOf("/"));
                 //ERROR: The code above returns -1
             }
+        }
+
+        private void searchBox_TextChanged(object sender, EventArgs e)
+        {
+            string kwd = searchBox.Text.ToLower();
+            searchBox.Items.Clear();
+            searchBox.Select(searchBox.Text.Length, 0);
+            List<String> results = new List<string>();
+            foreach(string s in lb1)
+            {
+                if (s.ToLower().StartsWith(kwd))
+                {
+                    searchBox.Items.Add(s);
+                }
+            }
+            foreach (string s in lb2)
+            {
+                if (s.ToLower().StartsWith(kwd))
+                {
+                    searchBox.Items.Add(s);
+                }
+            }
+            searchBox.DroppedDown = true;
         }
     }
 }
