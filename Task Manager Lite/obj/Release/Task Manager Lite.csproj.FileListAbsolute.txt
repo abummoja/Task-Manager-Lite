@@ -4,7 +4,6 @@ C:\Users\Admin\source\repos\Task Manager Lite\Task Manager Lite\bin\Release\Task
 C:\Users\Admin\source\repos\Task Manager Lite\Task Manager Lite\bin\Release\Task Manager Lite.exe
 C:\Users\Admin\source\repos\Task Manager Lite\Task Manager Lite\bin\Release\Task Manager Lite.pdb
 C:\Users\Admin\source\repos\Task Manager Lite\Task Manager Lite\obj\Release\Task Manager Lite.csproj.AssemblyReference.cache
-C:\Users\Admin\source\repos\Task Manager Lite\Task Manager Lite\obj\Release\Task_Manager_Lite.Form1.resources
 C:\Users\Admin\source\repos\Task Manager Lite\Task Manager Lite\obj\Release\Task_Manager_Lite.Properties.Resources.resources
 C:\Users\Admin\source\repos\Task Manager Lite\Task Manager Lite\obj\Release\Task Manager Lite.csproj.GenerateResource.cache
 C:\Users\Admin\source\repos\Task Manager Lite\Task Manager Lite\obj\Release\Task Manager Lite.csproj.CoreCompileInputs.cache
@@ -12,3 +11,4 @@ C:\Users\Admin\source\repos\Task Manager Lite\Task Manager Lite\obj\Release\Task
 C:\Users\Admin\source\repos\Task Manager Lite\Task Manager Lite\obj\Release\Task Manager Lite.application
 C:\Users\Admin\source\repos\Task Manager Lite\Task Manager Lite\obj\Release\Task Manager Lite.exe
 C:\Users\Admin\source\repos\Task Manager Lite\Task Manager Lite\obj\Release\Task Manager Lite.pdb
+C:\Users\Admin\source\repos\Task Manager Lite\Task Manager Lite\obj\Release\Task_Manager_Lite.MainActivity.resources

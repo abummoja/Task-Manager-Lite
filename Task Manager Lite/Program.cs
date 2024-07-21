@@ -16,7 +16,7 @@ namespace Task_Manager_Lite
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new Form1());
+            Application.Run(new MainActivity());
         }
     }
 }

@@ -11,19 +11,19 @@ using System.Windows.Forms;
 
 namespace Task_Manager_Lite
 {
-    public partial class Form1 : Form
+    public partial class MainActivity : Form
     {
         int CURRENT = 1;
         List<string> lb1 = new List<string>();
         List<string> lb2 = new List<string>();
         PerformanceCounter cpuMan;
-        public Form1()
+        public MainActivity()
         {
            // searchBoxNotifier.Text = "< Search Here.";
             InitializeComponent();
             ListProcesses();
-            tabPage1.GotFocus += TabPage1_GotFocus;
-            tabPage2.GotFocus += TabPage2_GotFocus;
+            foregroundProcPage.GotFocus += TabPage1_GotFocus;
+            bgProcPage.GotFocus += TabPage2_GotFocus;
             searchBox.DropDown += SearchBox_DropDown;
             searchBox.DropDownClosed += SearchBox_DropDownClosed;
             //updatePerfMon();
@@ -71,7 +71,7 @@ namespace Task_Manager_Lite
             searchBoxNotifier.Text = "< Search Here.";
             if(searchBox.Text != "")
             {
-                label1.Text = searchBox.Text;
+                focusedProcessLabel.Text = searchBox.Text;
             }
         }
 
@@ -83,21 +83,21 @@ namespace Task_Manager_Lite
         private void TabPage2_GotFocus(object sender, EventArgs e)
         {
             CURRENT = 2;
-            Form1.ActiveForm.Text = Form1.ActiveForm.Text + ":Background Apps";
+            MainActivity.ActiveForm.Text = MainActivity.ActiveForm.Text + ":Background Apps";
             //button3.Enabled = false;
-            if(button3.Enabled == true)
+            if(procDetailsBtn.Enabled == true)
             {
-                button3.Enabled = false;
+                procDetailsBtn.Enabled = false;
             }
         }
 
         private void TabPage1_GotFocus(object sender, EventArgs e)
         {
             CURRENT = 1;
-            Form1.ActiveForm.Text = Form1.ActiveForm.Text + ":Foreground Apps";
-            if(button3.Enabled == false)
+            MainActivity.ActiveForm.Text = MainActivity.ActiveForm.Text + ":Foreground Apps";
+            if(procDetailsBtn.Enabled == false)
             {
-                button3.Enabled = true;
+                procDetailsBtn.Enabled = true;
             }
         }
 
@@ -112,23 +112,23 @@ namespace Task_Manager_Lite
 
             lb1.Clear();
             lb2.Clear();
-            listBox1.Items.Clear();
-            listBox2.Items.Clear();
+            runningAppsListBox.Items.Clear();
+            bgProcListBox.Items.Clear();
             Process[] processes = Process.GetProcesses();
             foreach(Process p in processes)
             {
                 if (!string.IsNullOrEmpty(p.MainWindowTitle))
                 {
                     //Console.WriteLine(p.ProcessName);
-                    listBox1.Items.Add(p.ProcessName);
+                    runningAppsListBox.Items.Add(p.ProcessName);
                     lb1.Add(p.ProcessName);
-                    listBox1.Sorted = true;
+                    runningAppsListBox.Sorted = true;
                 }
                 else
                 {
-                    listBox2.Items.Add(p.ProcessName);
+                    bgProcListBox.Items.Add(p.ProcessName);
                     lb2.Add(p.ProcessName);
-                    listBox2.Sorted = true;
+                    bgProcListBox.Sorted = true;
                 }
                 /*res = Icon.ExtractAssociatedIcon(p.MainModule.FileName);
                 ImgList.Images.Add(res);
@@ -138,7 +138,7 @@ namespace Task_Manager_Lite
 
         private void endOneProcess(object sender, EventArgs e)
         {
-            Process[] p = Process.GetProcessesByName(label1.Text);
+            Process[] p = Process.GetProcessesByName(focusedProcessLabel.Text);
             foreach(var proc in p)
             {
                 try
@@ -170,23 +170,23 @@ namespace Task_Manager_Lite
 
         private void listItemClicked(object sender, EventArgs e)
         {
-            getProcess(listBox1);
+            getProcess(runningAppsListBox);
         }
 
         private void getProcess(ListBox listBox)
         {
             string selectedItem = listBox.SelectedItem.ToString();
-            label1.Text = selectedItem;
+            focusedProcessLabel.Text = selectedItem;
         }
 
         private void listBgProcClicked(object sender, EventArgs e)
         {
-            getProcess(listBox2);
+            getProcess(bgProcListBox);
         }
 
         private void showDetails(object sender, EventArgs e)
         {
-            Process[] p = Process.GetProcessesByName(label1.Text);
+            Process[] p = Process.GetProcessesByName(focusedProcessLabel.Text);
             foreach(var pr in p)
             {
                 string name = pr.ProcessName.ToString();
@@ -261,7 +261,7 @@ namespace Task_Manager_Lite
 
         void refreshProcess()
         {
-            Process[] p = Process.GetProcessesByName(label1.Text);
+            Process[] p = Process.GetProcessesByName(focusedProcessLabel.Text);
             foreach (var proc in p)
             {
                 try
@@ -283,7 +283,7 @@ namespace Task_Manager_Lite
 
         private void closeGraceFully(object sender, EventArgs e)
         {
-            Process[] p = Process.GetProcessesByName(label1.Text);
+            Process[] p = Process.GetProcessesByName(focusedProcessLabel.Text);
             foreach (var proc in p)
             {
                 try

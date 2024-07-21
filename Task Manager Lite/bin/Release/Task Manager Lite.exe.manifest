@@ -42,14 +42,14 @@
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="Task Manager Lite.exe" size="17888">
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="Task Manager Lite.exe" size="17376">
       <assemblyIdentity name="Task Manager Lite" version="1.0.0.0" language="neutral" processorArchitecture="msil" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>2i7/b5RddospxvpFxjoskKKhOHWMQ+tzWOb5pnoooPc=</dsig:DigestValue>
+        <dsig:DigestValue>Zpva8caLEkGxxrYc6DbmETX71YRfFk9kWTjeBi43MQo=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
