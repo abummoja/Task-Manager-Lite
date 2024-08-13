@@ -17,7 +17,7 @@ Click an item (app) in the list, and use the preferred action in the buttons at 
 - [x] Close all running processes (experimental)
 ### TODO:
 - [ ] Load running processes in real-time instead of manually refreshing the list
-- [ ] Add a search bar to easily find processes
+- [x] Add a search bar to easily find processes
       - By Process Id
       - By process Name
 - [ ]  Separate tab for unresponsive processes/apps
